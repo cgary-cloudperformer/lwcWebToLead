@@ -12,8 +12,3 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
-
-# ignored components
-AppSwitcher.appMenu
-LightningSalesConsole_UtilityBar.flexipage
-Admin.profile
