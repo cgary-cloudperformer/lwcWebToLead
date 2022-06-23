@@ -1,0 +1,54 @@
+<template>
+    <lightning-card title={formTitle}>
+        <template if:true={hasPrimarySectionFieldList}>
+            <lightning-record-edit-form object-api-name={newObjectName} onsuccess={handleFormSuccess}>
+                <lightning-messages></lightning-messages>
+                <div class="slds-grid slds-grid_align-center slds-wrap slds-gutters">
+
+                    <template if:true={hasPrimarySectionFieldList}>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-box_small slds-theme_info slds-var-m-vertical_x-small">
+                                <h3><span class="slds-text-heading_small">{primarySectionName}</span></h3>
+                            </div>
+                            <template for:each={primarySectionFieldList} for:item="leadField">
+                            <div key={leadField.apiName} class="slds-col slds-size_1-of-1">
+                                <lightning-input-field class="leadField" field-name={leadField.apiName} onchange={handleFieldChange} disabled={leadField.required}></lightning-input-field>
+                            </div>
+                            </template>
+                        </div>
+                    </div>
+                    </template>
+
+                    <template if:true={hasAdditionalSectionFieldList}>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-grid slds-wrap">
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-box_small slds-theme_info slds-var-m-vertical_x-small">
+                                <h3><span class="slds-text-heading_small">{additionalSectionName}</span></h3>
+                            </div>
+                            <template for:each={additionalSectionFieldList} for:item="addleadField">
+                            <div key={addleadField.apiName} class="slds-col slds-size_1-of-1">
+                                <lightning-input-field class="leadField" field-name={addleadField.apiName} onchange={handleFieldChange} disabled={addleadField.required}></lightning-input-field>
+                            </div>
+                            </template>
+                        </div>
+                    </div>
+                    </template>
+
+                    <template if:true={hasOptionalMessage}>
+                        <div class="slds-col slds-size_4-of-6 slds-var-p-horizontal_large">
+                            <div class="slds-box slds-theme_info slds-var-m-vertical_x-small slds-align_absolute-center">
+                                <span class="slds-text-heading_small">{optionalMessage}</span>
+                            </div>
+                        </div>
+                    </template>
+
+                    <div class="slds-col slds-size_1-of-1 slds-var-m-horizontal_large slds-align_absolute-center">
+                        <lightning-button variant="brand" type="submit" label={submitLabel} onclick={handleButtonSubmit}></lightning-button>
+                    </div>
+                </div>
+            </lightning-record-edit-form>
+        </template>
+        
+    </lightning-card>
+</template>

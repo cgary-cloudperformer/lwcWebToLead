@@ -1,0 +1,26 @@
+<apex:page apiVersion="54.0" applyBodyTag="true" applyHtmlTag="true" cache="false" contentType="text/html"
+    docType="html-5.0" id="WebToLead" language="en-US" lightningStylesheets="true" showHeader="false">
+
+    <apex:includeLightning/>
+
+    <div id="componentvf" />
+
+    <script type="text/javascript">
+        $Lightning.use('c:auraWebToLead',function(){
+            $Lightning.createComponent('c:webToLead',
+            {
+                'formTitle':'Salzburg Capital Form',
+                'primarySectionName':'User Information',
+                'primarySectionFieldset':'PrimaryWebToLead',
+                'additionalSectionName':'Funding Information',
+                'additionalSectionFieldset':'FundingInformation',
+                'submitLabel':'Submit',
+                'optionalMessage':'Confirm You Completed All User and Funding Information and then Click the Submit Button Below to Submit Your Information'
+            },
+            'componentvf',
+            function(cmp){
+                window.console.dir(cmp);
+            });
+        });
+    </script>
+</apex:page>

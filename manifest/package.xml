@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>LeadFieldsetPicklist</members>
+        <members>LeadFieldsetPicklistTest</members>
+        <members>WebToLeadService</members>
+        <members>WebToLeadServiceTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>WebtoLead</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>auraWebToLead</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>webToLead</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <version>54.0</version>
+</Package>

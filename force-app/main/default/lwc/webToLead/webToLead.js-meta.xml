@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Web To Lead Component</masterLabel>
+    <description>Lightning Web Component for Web To Lead Functionality</description>
+    <targets>
+        <target>lightningCommunity__Default</target>
+        <target>lightningCommunity__Page</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default,lightning__AppPage,lightning__HomePage">
+            <property label="Form Section Label" name="formTitle" type="String" description="The Title of the Form" default="Salzburg Capital Form" required="true"/>
+            <property label="Primary Section Label" name="primarySectionName" type="String" description="Label for the Primary Section" default="User Information"
+                required="true"/>
+            <property label="Primary Section Fieldset" name="primarySectionFieldset" type="String" datasource="apex://LeadFieldsetPicklist" 
+                description="Fieldset that is defined which contain the fields to collect in the primary section" required="true"/>
+            <property label="Additional Section Label" name="additionalSectionName" type="String" description="Label for the Additional Section"
+                default="Funding Information" required="false"/>
+            <property label="Additonal Section Fieldset" name="additionalSectionFieldset" type="String" datasource="apex://LeadFieldsetPicklist" 
+                description="Fieldset that is defined which contain the fields to collect in the additional section" required="false"/>
+            <property label="Exclusionary Fieldset" name="disablementFieldset" type="String" datasource="apex://LeadFieldsetPicklist"
+                description="Fieldset containing fields to disable when a certain checkbox is set to true"/>
+            <property label="Submit Button Label" name="submitLabel" type="String" description="Text for Submit Button Label" default="Submit"
+                required="false"/>
+            <property label="Optional Information Message" name="optionalMessage" type="String" description="Optional Message to Display Above Submit"
+                required="false"/>
+            <property label="Return URL" name="returnUri" type="String" description="The URL of the page to forward user to upon successul Lead submission"
+                placeholder="Please enter full URL" required="true"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -1,0 +1,38 @@
+{
+  "orgName": "Web To Lead Demo Org",
+  "country": "US",
+  "adminEmail": "cgary@cloudperformer.com",
+  "description":"Demo Org for Web To Lead Functionality",
+  "hasSampleData": false,
+  "edition": "Developer",
+  "features": [
+    "API","EnableSetPasswordInApi","Communities","ConnectedAppToolingAPI","ContactsToMultipleAccounts","DebugApex","DefaultWorkflowUser","DeferSharingCalc",
+    "FlowSites","ForceComPlatform","Interaction","LightningSalesConsole","SalesUser","SessionIdInLogEnabled","Sites"
+  ],
+  "settings": {
+    "communitiesSettings": {
+      "canModerateAllFeedPosts":true,
+      "canModerateInternalFeedPosts":true,
+      "enableCommunityWorkspaces":true,
+      "enableCspContactVisibilityPref":true,
+      "enableCspNotesOnAccConPref":true,
+      "enableEnablePRM":true,
+      "enableExternalAccHierPref":true,
+      "enableNetworksEnabled":true,
+      "enableOotbProfExtUserOpsEnable":true,
+      "enablePowerCustomerCaseStatus":true,
+      "enablePRMAccRelPref":true,
+      "enableUsernameUniqForOrgPref":true
+    },
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mapAndLocationSettings": {
+      "enableMapsAndLocation":true,
+      "enableAddressAutoComplete":true
+    },
+    "mobileSettings": {
+      "enableS1EncryptedStoragePref2": false
+    }
+  }
+}
