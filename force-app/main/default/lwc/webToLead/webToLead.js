@@ -9,6 +9,7 @@ export default class WebToLead extends NavigationMixin(LightningElement) {
     @api additionalSectionName;
     @api additionalSectionFieldset;
     @api disablementFieldset;
+    @api disablementField;
     @api submitLabel;
     @api optionalMessage;
     @api returnUri;
@@ -16,21 +17,28 @@ export default class WebToLead extends NavigationMixin(LightningElement) {
     exlcusionOn;
     @track leadPrimarySectionFieldList;
     @track leadAdditionalSectionFieldList;
-    leadExclusionFieldList;
+    @track leadExclusionFieldList;
 
     @wire(obtainFieldNameList,{'fieldsetName':'$primarySectionFieldset'})
-    processLeadPrimarySectionFieldList(response){
-        this.leadPrimarySectionFieldList = JSON.parse(JSON.stringify(response));
+    processLeadPrimarySectionFieldList({err, data}){
+        window.console.dir(data);      
+        if(data){
+            this.leadPrimarySectionFieldList = {'data':JSON.parse(JSON.stringify(data))};
+        }  
     }
     
     @wire(obtainFieldNameList,{'fieldsetName':'$additionalSectionFieldset'})
-    processLeadAdditionalSectionFieldList(response){
-        this.leadAdditionalSectionFieldList = JSON.parse(JSON.stringify(response));
+    processLeadAdditionalSectionFieldList({err, data}){
+        if(data){
+            this.leadAdditionalSectionFieldList = {'data':JSON.parse(JSON.stringify(data))};
+        }
     }
     
     @wire(obtainFieldNameList,{'fieldsetName':'$disablementFieldset'})
-    processLeadExclusionFieldList(response){
-        this.leadExclusionFieldList = JSON.parse(JSON.stringify(response));
+    processLeadExclusionFieldList({err, data}){
+        if(data){
+            this.leadExclusionFieldList = {'data':JSON.parse(JSON.stringify(data))};
+        }
     }
     
     /**
@@ -39,24 +47,26 @@ export default class WebToLead extends NavigationMixin(LightningElement) {
      * @param {Event} evt 
      */
     handleFieldChange(evt){
-        //window.console.log('Event Info from field: %s',JSON.stringify(evt.detail,null,"\t"));
-        var fieldElement = evt.target.fieldName;
+        var fieldElement = evt.target.fieldName.toLowerCase();
         var fieldValue = evt.detail;
-        if(typeof(this.leadExclusionFieldList)!=='undefined' && typeof(this.leadExclusionFieldList.data)!=='undefined' &&
-                fieldElement === 'Use_Same_Address__c'){
+        if( this.hasExclusionFieldList && fieldElement == this.disablementField){
             const exclusionFieldList = this.leadExclusionFieldList.data;
             const additionalFieldList = this.leadAdditionalSectionFieldList.data;
-            var tempArray = additionalFieldList.map((fieldItem) => {
+            var data = additionalFieldList.map((fieldItem) => {
                 let {label, apiName, required} = fieldItem;
                 let foundIndex = exclusionFieldList.findIndex(item => item.apiName === apiName);
                 if(foundIndex > -1){
                     window.console.log('Found %s in exclusion Field List: %s',apiName, foundIndex);
-                    required = fieldValue.checked;
+                    required = (fieldValue.checked || fieldValue.value ==='Yes' ? true:false);
                 }
-                return {'label':label, 'apiName':apiName, 'required':required};
+                return {label, apiName, required};
             });
-            this.leadAdditionalSectionFieldList = {'data':tempArray};
+            window.console.log('Data after remapping: %s',JSON.stringify(data,null,"\t"));
+            this.leadAdditionalSectionFieldList = { data };
             window.console.dir(this.additionalSectionFieldList);
+        } else {
+            window.console.log('When running the disable test, it returned false. hasExclusionFieldList: %s. fieldElement: %s, selectedField element: %s',this.hasExclusionFieldList,this.disablementField, fieldElement);
+            window.console.log(JSON.stringify(this.leadExclusionFieldList,null,"\t"));
         }
     }
     /**
@@ -103,6 +113,13 @@ export default class WebToLead extends NavigationMixin(LightningElement) {
             return this.leadAdditionalSectionFieldList.data;
         }
         return [];
+    }
+
+    get hasExclusionFieldList(){
+        if(typeof(this.leadExclusionFieldList)!=='undefined' && typeof(this.leadExclusionFieldList.data)!=='undefined'){
+            return true;
+        }
+        return false;
     }
 
     get hasOptionalMessage(){

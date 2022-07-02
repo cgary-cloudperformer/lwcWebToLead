@@ -3,6 +3,8 @@
     <types>
         <members>LeadFieldsetPicklist</members>
         <members>LeadFieldsetPicklistTest</members>
+        <members>LeadFieldPicklist</members>
+        <members>LeadFieldPicklistTest</members>
         <members>WebToLeadService</members>
         <members>WebToLeadServiceTest</members>
         <name>ApexClass</name>

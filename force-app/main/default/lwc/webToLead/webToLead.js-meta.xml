@@ -22,7 +22,9 @@
             <property label="Additonal Section Fieldset" name="additionalSectionFieldset" type="String" datasource="apex://LeadFieldsetPicklist" 
                 description="Fieldset that is defined which contain the fields to collect in the additional section" required="false"/>
             <property label="Exclusionary Fieldset" name="disablementFieldset" type="String" datasource="apex://LeadFieldsetPicklist"
-                description="Fieldset containing fields to disable when a certain checkbox is set to true"/>
+                description="Fieldset containing fields to disable when a certain field is set to true or yes" required="false"/>
+            <property label="Exclusionary Field" name="disablementField" type="String" datasource="apex://LeadFieldPicklist" 
+                description="Specify Field to check for field disabling." required="false"/>
             <property label="Submit Button Label" name="submitLabel" type="String" description="Text for Submit Button Label" default="Submit"
                 required="false"/>
             <property label="Optional Information Message" name="optionalMessage" type="String" description="Optional Message to Display Above Submit"
