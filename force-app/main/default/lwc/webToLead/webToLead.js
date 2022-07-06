@@ -49,7 +49,7 @@ export default class WebToLead extends NavigationMixin(LightningElement) {
     handleFieldChange(evt){
         var fieldElement = evt.target.fieldName.toLowerCase();
         var fieldValue = evt.detail;
-        if( this.hasExclusionFieldList && fieldElement == this.disablementField){
+        if( this.hasExclusionFieldList && fieldElement == this.disablementField.toLowerCase()){
             const exclusionFieldList = this.leadExclusionFieldList.data;
             const additionalFieldList = this.leadAdditionalSectionFieldList.data;
             var data = additionalFieldList.map((fieldItem) => {
